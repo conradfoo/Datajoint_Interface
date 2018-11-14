@@ -21,13 +21,13 @@ classdef Behavior < dj.Imported
              m = cniferObj();
              m.loadimg(pimg);
              m.loadlab(plab,fetch1(ctest.Session & key,'adi_trial_num'));
-             m.analyzeLabchart();
+             m.analyzeLabchart([]);
              
              key.lick_freq = m.lab.lick;
              key.ang_vel = m.lab.vel;
              key.t = m.lab.t;
              
-			 self.insert1(key)
+			 self.insert(key)
 		end
 	end
 

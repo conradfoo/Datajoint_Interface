@@ -8,6 +8,7 @@ cfp : longblob #The CFP fluorescence trace (dF/F)
 fret : longblob #The FRET signal (dR/R = yfp/cfp - 1)
 thresh : longblob #The reward threshold for the FRET signal
 t : longblob #The time from the start of the imaging session
+si : longblob #The scanimage property structure
 %}
 
 classdef Imaging < dj.Imported
@@ -27,8 +28,10 @@ classdef Imaging < dj.Imported
              key.fret = key.fret(:);
              key.thresh = m.mat.thresh(:);
              key.t = m.mat.t(:);
+             serializedSI = getByteStreamFromArray(m.m.SI);
+             key.si = serializedSI;
              
-             self.insert1(key);
+             self.insert(key);
 		end
 	end
 
